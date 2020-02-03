@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -87,13 +86,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6R-ok-Qem">
-                        <rect key="frame" x="160.5" y="281" width="230.5" height="20.5"/>
+                        <rect key="frame" x="155.5" y="281" width="235.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azb-7M-X2s">
-                        <rect key="frame" x="20" y="280" width="132.5" height="22"/>
+                        <rect key="frame" x="15" y="280" width="132.5" height="22"/>
                         <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" title="  Dismiss Post" image="trash" catalog="system">
                             <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -121,10 +120,10 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="authorLabel" destination="T4C-JO-R5S" id="XW1-ab-8aC"/>
+                <outlet property="badgeView" destination="Leq-SG-5Ib" id="O9x-ga-8nK"/>
                 <outlet property="commentsCountLabel" destination="u6R-ok-Qem" id="QJL-o7-BCM"/>
                 <outlet property="dateLabel" destination="L7L-Kq-0yM" id="d4x-0Y-zoN"/>
                 <outlet property="dismissPostButton" destination="Azb-7M-X2s" id="73t-jT-Lm4"/>
-                <outlet property="readUnreadBadge" destination="Leq-SG-5Ib" id="O9x-ga-8nK"/>
                 <outlet property="thumbnailView" destination="oAQ-f8-jjO" id="p6m-qi-Una"/>
                 <outlet property="titleLabel" destination="gtT-fQ-id9" id="odp-Xe-VG8"/>
             </connections>
