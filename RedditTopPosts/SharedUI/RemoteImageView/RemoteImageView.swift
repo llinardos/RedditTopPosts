@@ -11,6 +11,8 @@ class RemoteImageView: XibView {
   
   override func commonInit() {
     super.commonInit()
+    
+    errorView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fetchImage)))
   }
   
   func loadImageFromURL(_ imageUrl: URL) {
