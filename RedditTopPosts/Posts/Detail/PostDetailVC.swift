@@ -6,7 +6,7 @@ class PostDetailVC: UIViewController {
   
   @IBOutlet weak var authorLabel: UILabel!
   @IBOutlet weak var titleLabel: UILabel!
-  @IBOutlet weak var thumbnailView: RemoteImageView!
+  @IBOutlet weak var thumbnailView: RedditPostRemoteImageView!
   
   private var post: RedditPost?
   

@@ -1,11 +1,12 @@
 import UIKit
 
-class RemoteImageView: XibView {
+class RedditPostRemoteImageView: XibView {
   @IBOutlet private weak var backgroundView: UIView!
   @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
   @IBOutlet private weak var errorView: UIView!
   @IBOutlet private weak var imageView: UIImageView!
   
+  // TODO: handles reedit special case, can be refactored to make it generic and reuse it in another components/smodules/projects.
   private var defaultImageURL: URL = {
     // Loads reddit noimage in case of NO url
     return URL(string: "https://www.reddit.com/static/noimage.png")!

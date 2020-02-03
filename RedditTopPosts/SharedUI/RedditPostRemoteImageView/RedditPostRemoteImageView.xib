@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RemoteImageView" customModule="Reddit_Top_Posts" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RedditPostRemoteImageView" customModule="RedditTopPosts" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundView" destination="rgN-c0-Oh3" id="A5A-ok-fBH"/>
                 <outlet property="errorView" destination="G86-GI-yv2" id="jsi-62-rry"/>

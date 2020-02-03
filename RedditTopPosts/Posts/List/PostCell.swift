@@ -5,7 +5,7 @@ class PostCell: UITableViewCell {
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var commentsCountLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
-  @IBOutlet weak var thumbnailView: RemoteImageView!
+  @IBOutlet weak var thumbnailView: RedditPostRemoteImageView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
