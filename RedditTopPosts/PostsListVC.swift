@@ -33,6 +33,13 @@ class PostsListVC: UIViewController {
     self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     self.tableView.separatorColor = .white
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.tableView.indexPathForSelectedRow.map {
+      self.tableView.deselectRow(at: $0, animated: true)
+    }
+  }
 }
 
 extension PostsListVC: UITableViewDelegate, UITableViewDataSource {
