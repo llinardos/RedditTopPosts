@@ -1,4 +1,5 @@
 import UIKit
+import SafariServices
 
 class App {
   private var splitVC: UISplitViewController
@@ -18,6 +19,7 @@ class App {
     self.detailVC = (splitVC.viewControllers[1] as? UINavigationController)
       .flatMap { $0.viewControllers.first }
       .flatMap { $0 as? PostDetailVC }!
+    self.setupShowFullscreenImageOn(self.detailVC)
     
     splitVC.delegate = self
     splitVC.preferredDisplayMode = .allVisible
@@ -29,14 +31,24 @@ class App {
       if self?.splitVC.viewControllers.count == 1 { // Only showing master
         guard let self = self else { return }
         self.detailVC = self.storyboard.instantiateViewController(identifier: "PostDetailVC") as! PostDetailVC
+        self.setupShowFullscreenImageOn(self.detailVC)
         self.listVC.navigationController?.pushViewController(self.detailVC, animated: true)
       }
       self?.detailVC.setPost(selectedPost)
     }
+    
+    
   }
   
   func run(on window: UIWindow) {
     window.rootViewController = splitVC
+  }
+  
+  func setupShowFullscreenImageOn(_ detailVC: PostDetailVC) {
+    detailVC.onImageTapped = { image in
+      let safariVC = SFSafariViewController(url: image.fullURL)
+      detailVC.present(safariVC, animated: true, completion: nil)
+    }
   }
 }
 
@@ -55,28 +67,34 @@ func dummyPosts() -> [RedditPost] {
       authorName: "Author 1",
       commentsCount: 0, creationDate:
       Date(),
-      thumbnailURL: URL(string: "https://b.thumbs.redditmedia.com/6P1_FO0JYWGsW9sZbaauLsVrl5406oWxvzYAY7jF0mI.jpg")!
+      image: .init(
+        thumbnailURL: URL(string: "https://b.thumbs.redditmedia.com/6P1_FO0JYWGsW9sZbaauLsVrl5406oWxvzYAY7jF0mI.jpg")!,
+        fullURL: URL(string: "https://i.redd.it/hwsmjg28rke41.jpg")!
+      )
     ),
     RedditPost(
       title: "Title 2",
       authorName: "Author 2",
       commentsCount: 1,
       creationDate: Date().advanced(by: -30),
-      thumbnailURL: URL(string: "https://b.thumbs.redditmedia.com/vjeshsBc_5iDZ1tLGeo_6rdZDU4_vP5RzEHOhO0tBxE.jpg")!
+      image: .init(
+        thumbnailURL: URL(string: "https://b.thumbs.redditmedia.com/vjeshsBc_5iDZ1tLGeo_6rdZDU4_vP5RzEHOhO0tBxE.jpg")!,
+        fullURL: URL(string: "https://i.redd.it/vfwfif8iake41.jpg")!
+      )
     ),
     RedditPost(
       title: "Title 3",
       authorName: "Author 3",
       commentsCount: 12124618987,
       creationDate: Date().advanced(by: -121),
-      thumbnailURL: nil
+      image: nil
     ),
     RedditPost(
       title: "Title 4",
       authorName: "Author 4",
       commentsCount: 1251,
       creationDate: Date().advanced(by: -1241231),
-      thumbnailURL: nil
+      image: nil
     ),
   ]
 }
