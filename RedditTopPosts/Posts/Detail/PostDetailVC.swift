@@ -6,6 +6,7 @@ class PostDetailVC: UIViewController {
   
   @IBOutlet weak var authorLabel: UILabel!
   @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var thumbnailView: RedditPostRemoteImageView!
   
   private var post: RedditPost?
   
@@ -44,5 +45,6 @@ class PostDetailVC: UIViewController {
     
     self.authorLabel.text = post.authorName
     self.titleLabel.text = post.title
+    self.thumbnailView.loadImageFromURL(post.thumbnailURL)
   }
 }
