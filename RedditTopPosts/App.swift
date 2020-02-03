@@ -63,7 +63,7 @@ extension App: UISplitViewControllerDelegate {
 func dummyPosts() -> [RedditPost] {
   return [
     RedditPost(
-      title: (1...10).map { _ in "There is a finite number of people who were born the same year as you. Every time one of them dies, you are closer to being the last one." }.joined() ,
+      title: "There is a finite number of people who were born the same year as you. Every time one of them dies, you are closer to being the last one.",
       authorName: "Author 1",
       commentsCount: 0, creationDate:
       Date(),
