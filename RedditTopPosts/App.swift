@@ -24,9 +24,14 @@ class App {
     splitVC.delegate = self
     splitVC.preferredDisplayMode = .allVisible
     
-    self.listVC.topPostsProvider = StubTopPostsProvider(returning: .success(dummyPosts()))
-//    self.listVC.topPostsProvider = StubTopPostsProvider(returning: .failure(NSError()))
-//    self.listVC.topPostsProvider = RedditAPITopPostsProvider()
+//    let topPostsProvider = StubTopPostsProvider(returning: .success(dummyPosts()))
+//    let topPostsProvider = StubTopPostsProvider(returning: .failure(NSError()))
+    let topPostsProvider = RedditAPITopPostsProvider()
+    let readPostsStorage = UserDefaultsPostsIdsStorage(key: "RedditTopPosts.ReadPotsIds")
+    let posts = Posts(topPostsProvider: topPostsProvider, readPostsStorage: readPostsStorage)
+    
+    self.listVC.posts = posts
+    
     self.listVC.onPostSelected = { [weak self] selectedPost in
       if self?.splitVC.viewControllers.count == 1 { // Only showing master
         guard let self = self else { return }
@@ -63,6 +68,7 @@ extension App: UISplitViewControllerDelegate {
 func dummyPosts() -> [RedditPost] {
   return [
     RedditPost(
+      id: "1",
       title: "There is a finite number of people who were born the same year as you. Every time one of them dies, you are closer to being the last one.",
       authorName: "Author 1",
       commentsCount: 0, creationDate:
@@ -73,6 +79,7 @@ func dummyPosts() -> [RedditPost] {
       )
     ),
     RedditPost(
+      id: "2",
       title: "Title 2",
       authorName: "Author 2",
       commentsCount: 1,
@@ -83,6 +90,7 @@ func dummyPosts() -> [RedditPost] {
       )
     ),
     RedditPost(
+      id: "3",
       title: "Title 3",
       authorName: "Author 3",
       commentsCount: 12124618987,
@@ -90,6 +98,7 @@ func dummyPosts() -> [RedditPost] {
       image: nil
     ),
     RedditPost(
+      id: "4",
       title: "Title 4",
       authorName: "Author 4",
       commentsCount: 1251,

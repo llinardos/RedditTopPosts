@@ -34,12 +34,13 @@ class PostCell: UITableViewCell {
     accessoryView?.tintColor = .white
   }
   
-  func setPost(_ post: RedditPost) {
+  func showPost(_ post: RedditPost, asRead isRead: Bool) {
     authorLabel.text = post.authorName
     titleLabel.text = post.title
     commentsCountLabel.text = text(for: post.commentsCount)
     dateLabel.text = text(for: post.creationDate)
     thumbnailView.loadImageFromURL(post.image?.thumbnailURL)
+    readUnreadBadge.isHidden = isRead
   }
   
   private func text(for commentsCount: Int) -> String {
