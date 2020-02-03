@@ -17,16 +17,38 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JfA-FV-xaZ">
-                        <rect key="frame" x="16" y="16" width="375" height="20.5"/>
+                        <rect key="frame" x="16" y="16" width="375" height="128"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Leq-SG-5Ib">
+                                <rect key="frame" x="0.0" y="0.0" width="8" height="128"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61U-1M-Vpf" customClass="RoundedView" customModule="RedditTopPosts" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="60" width="8" height="8"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="61U-1M-Vpf" secondAttribute="height" id="KFG-4Q-vlu"/>
+                                            <constraint firstAttribute="width" constant="8" id="yd4-ey-r8r"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="61U-1M-Vpf" firstAttribute="centerY" secondItem="Leq-SG-5Ib" secondAttribute="centerY" id="PUG-9y-vOB"/>
+                                    <constraint firstItem="61U-1M-Vpf" firstAttribute="centerX" secondItem="Leq-SG-5Ib" secondAttribute="centerX" id="eRP-Sr-ZJp"/>
+                                    <constraint firstItem="61U-1M-Vpf" firstAttribute="leading" secondItem="Leq-SG-5Ib" secondAttribute="leading" id="fjR-iu-hfR"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4C-JO-R5S">
-                                <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                <rect key="frame" x="16" y="0.0" width="42" height="128"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7L-Kq-0yM">
-                                <rect key="frame" x="50" y="0.0" width="325" height="20.5"/>
+                                <rect key="frame" x="66" y="0.0" width="309" height="128"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -34,7 +56,7 @@
                         </subviews>
                     </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d7a-14-3qG">
-                        <rect key="frame" x="16" y="44.5" width="375" height="120"/>
+                        <rect key="frame" x="16" y="152" width="375" height="120"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAQ-f8-jjO" customClass="RedditPostRemoteImageView" customModule="RedditTopPosts" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
@@ -65,7 +87,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6R-ok-Qem">
-                        <rect key="frame" x="349" y="172.5" width="42" height="20.5"/>
+                        <rect key="frame" x="349" y="280" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -88,6 +110,7 @@
                 <outlet property="authorLabel" destination="T4C-JO-R5S" id="XW1-ab-8aC"/>
                 <outlet property="commentsCountLabel" destination="u6R-ok-Qem" id="QJL-o7-BCM"/>
                 <outlet property="dateLabel" destination="L7L-Kq-0yM" id="d4x-0Y-zoN"/>
+                <outlet property="readUnreadBadge" destination="Leq-SG-5Ib" id="O9x-ga-8nK"/>
                 <outlet property="thumbnailView" destination="oAQ-f8-jjO" id="p6m-qi-Una"/>
                 <outlet property="titleLabel" destination="gtT-fQ-id9" id="odp-Xe-VG8"/>
             </connections>

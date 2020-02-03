@@ -6,6 +6,7 @@ struct RedditPost {
     var fullURL: URL
   }
   
+  var id: String
   var title: String
   var authorName: String
   var commentsCount: Int

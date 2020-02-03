@@ -5,7 +5,8 @@ class PostCell: UITableViewCell {
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var commentsCountLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
-  @IBOutlet weak var thumbnailView: RedditPostRemoteImageView!
+  @IBOutlet private weak var thumbnailView: RedditPostRemoteImageView!
+  @IBOutlet private weak var readUnreadBadge: UIView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -33,12 +34,13 @@ class PostCell: UITableViewCell {
     accessoryView?.tintColor = .white
   }
   
-  func setPost(_ post: RedditPost) {
+  func showPost(_ post: RedditPost, asRead isRead: Bool) {
     authorLabel.text = post.authorName
     titleLabel.text = post.title
     commentsCountLabel.text = text(for: post.commentsCount)
     dateLabel.text = text(for: post.creationDate)
     thumbnailView.loadImageFromURL(post.image?.thumbnailURL)
+    readUnreadBadge.isHidden = isRead
   }
   
   private func text(for commentsCount: Int) -> String {

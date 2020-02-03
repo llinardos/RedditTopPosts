@@ -9,8 +9,7 @@ class PostsListVC: UIViewController {
   private var refreshControl = UIRefreshControl()
   
   var onPostSelected: (RedditPost) -> Void = { _ in }
-  private var posts: [RedditPost] = []
-  var topPostsProvider: TopPostsProvider! // TODO: should be initialized with production ready implementation
+  var posts: Posts! // TODO: should be initialized with production ready implementation
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -47,7 +46,7 @@ class PostsListVC: UIViewController {
       self.tableView.deselectRow(at: $0, animated: true)
     }
     
-    if posts.count == 0 {
+    if posts.toShow().isEmpty {
       self.fetchPosts()
     }
   }
@@ -57,10 +56,11 @@ class PostsListVC: UIViewController {
     if !refreshControl.isRefreshing {
       self.showLoading()
     }
-    self.topPostsProvider.get() { [unowned self] result in
+    self.posts.fetch() { [weak self] result in
+      guard let self = self else { return }
       self.refreshControl.endRefreshing()
       switch result {
-      case .success(let posts): self.showPosts(posts)
+      case .success: self.showPosts()
       case .failure(let error): self.showError(error)
       }
     }
@@ -72,12 +72,11 @@ class PostsListVC: UIViewController {
     self.errorView.isHidden = true
   }
   
-  private func showPosts(_ posts: [RedditPost]) {
+  private func showPosts() {
     self.loadingView.isHidden = true
     self.contentView.isHidden = false
     self.errorView.isHidden = true
 
-    self.posts = posts
     self.tableView.reloadData()
   }
   
@@ -90,18 +89,20 @@ class PostsListVC: UIViewController {
 
 extension PostsListVC: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return posts.count
+    return posts.toShow().count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let post = posts[indexPath.row]
+    let post = posts.toShow()[indexPath.row]
     let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
-    cell.setPost(post)
+    cell.showPost(post, asRead: posts.isPostRead(post))
     return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let selectedPost = posts[indexPath.row]
+    let selectedPost = posts.toShow()[indexPath.row]
+    posts.markAsRead(selectedPost)
+    tableView.reloadRows(at: [indexPath], with: .none)
     onPostSelected(selectedPost)
   }
 }
