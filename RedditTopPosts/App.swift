@@ -22,12 +22,13 @@ class App {
     splitVC.delegate = self
     splitVC.preferredDisplayMode = .allVisible
     
-    self.listVC.onGoToDetail = { [weak self] in
+    self.listVC.onPostSelected = { [weak self] selectedPost in
       if self?.splitVC.viewControllers.count == 1 { // Only showing master
         guard let self = self else { return }
         self.detailVC = self.storyboard.instantiateViewController(identifier: "PostDetailVC") as! PostDetailVC
         self.listVC.navigationController?.pushViewController(self.detailVC, animated: true)
       }
+      self?.detailVC.setPost(selectedPost)
     }
   }
   

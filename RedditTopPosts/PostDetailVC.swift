@@ -4,6 +4,11 @@ class PostDetailVC: UIViewController {
   @IBOutlet private weak var contentView: UIView!
   @IBOutlet private weak var emptyView: UIView!
   
+  @IBOutlet weak var authorLabel: UILabel!
+  @IBOutlet weak var titleLabel: UILabel!
+  
+  private var post: RedditPost?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -11,7 +16,21 @@ class PostDetailVC: UIViewController {
     
     self.view.backgroundColor = .white
     
-    showEmpty()
+    setPost(post)
+  }
+  
+  func setPost(_ post: RedditPost?) {
+    self.post = post
+    
+    guard self.viewIfLoaded != nil else {
+      return
+    }
+    
+    if let post = post {
+      showPost(post)
+    } else {
+      showEmpty()
+    }
   }
   
   private func showEmpty() {
@@ -22,5 +41,8 @@ class PostDetailVC: UIViewController {
   private func showPost(_ post: RedditPost) {
     self.emptyView.isHidden = true
     self.contentView.isHidden = false
+    
+    self.authorLabel.text = post.authorName
+    self.titleLabel.text = post.title
   }
 }

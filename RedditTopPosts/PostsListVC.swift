@@ -3,7 +3,8 @@ import UIKit
 class PostsListVC: UIViewController {
   @IBOutlet private var tableView: UITableView!
   
-  var onGoToDetail: () -> Void = {} // TODO: replace with onPostSelected: (Post) -> Void
+  var onPostSelected: (RedditPost) -> Void = { _ in }
+  
   var posts: [RedditPost] = [
     RedditPost(title: "Title 1", authorName: "Author 1", commentsCount: 0, creationDate: Date()),
     RedditPost(title: "Title 2", authorName: "Author 2", commentsCount: 1, creationDate: Date().advanced(by: -30)),
@@ -31,13 +32,6 @@ class PostsListVC: UIViewController {
     
     self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     self.tableView.separatorColor = .white
-    
-    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fireGoToDetail)))
-  }
-  
-  @objc
-  private func fireGoToDetail() {
-    onGoToDetail()
   }
 }
 
@@ -51,5 +45,10 @@ extension PostsListVC: UITableViewDelegate, UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
     cell.setPost(post)
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let selectedPost = posts[indexPath.row]
+    onPostSelected(selectedPost)
   }
 }
