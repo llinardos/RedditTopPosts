@@ -39,7 +39,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAQ-f8-jjO">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAQ-f8-jjO" customClass="RemoteImageView" customModule="RedditTopPosts" customModuleProvider="target">
                         <rect key="frame" x="16" y="44.5" width="120" height="120"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -73,6 +73,7 @@
                 <outlet property="authorLabel" destination="T4C-JO-R5S" id="XW1-ab-8aC"/>
                 <outlet property="commentsCountLabel" destination="u6R-ok-Qem" id="QJL-o7-BCM"/>
                 <outlet property="dateLabel" destination="L7L-Kq-0yM" id="d4x-0Y-zoN"/>
+                <outlet property="thumbnailView" destination="oAQ-f8-jjO" id="p6m-qi-Una"/>
                 <outlet property="titleLabel" destination="gtT-fQ-id9" id="odp-Xe-VG8"/>
             </connections>
             <point key="canvasLocation" x="23.913043478260871" y="100.78125"/>

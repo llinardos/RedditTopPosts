@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RemoteImageView" customModule="Reddit_Top_Posts" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundView" destination="rgN-c0-Oh3" id="A5A-ok-fBH"/>
+                <outlet property="errorView" destination="G86-GI-yv2" id="jsi-62-rry"/>
+                <outlet property="imageView" destination="4Uv-Fh-m5v" id="jtT-Gi-nNk"/>
+                <outlet property="loadingIndicator" destination="r3R-sc-Tff" id="ucU-WA-G1f"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="225" height="197"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgN-c0-Oh3">
+                    <rect key="frame" x="0.0" y="0.0" width="225" height="197"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Uv-Fh-m5v">
+                    <rect key="frame" x="0.0" y="0.0" width="225" height="197"/>
+                </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="r3R-sc-Tff">
+                    <rect key="frame" x="102.5" y="88.5" width="20" height="20"/>
+                    <color key="color" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G86-GI-yv2">
+                    <rect key="frame" x="0.0" y="0.0" width="225" height="197"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.triangle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="g2I-d7-hiW">
+                            <rect key="frame" x="90.5" y="77.5" width="44" height="42"/>
+                            <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="0CJ-bw-spp"/>
+                                <constraint firstAttribute="width" secondItem="g2I-d7-hiW" secondAttribute="height" id="rDp-nU-8oe"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="g2I-d7-hiW" firstAttribute="centerX" secondItem="G86-GI-yv2" secondAttribute="centerX" id="2Py-j3-efj"/>
+                        <constraint firstItem="g2I-d7-hiW" firstAttribute="centerY" secondItem="G86-GI-yv2" secondAttribute="centerY" id="V9v-B9-Jyj"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="4Uv-Fh-m5v" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4lx-4s-DBe"/>
+                <constraint firstAttribute="trailing" secondItem="rgN-c0-Oh3" secondAttribute="trailing" id="FNT-yo-O84"/>
+                <constraint firstItem="rgN-c0-Oh3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Fme-AI-CWB"/>
+                <constraint firstItem="G86-GI-yv2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Kq2-Wt-Trn"/>
+                <constraint firstAttribute="bottom" secondItem="G86-GI-yv2" secondAttribute="bottom" id="NZr-Gi-L6A"/>
+                <constraint firstItem="rgN-c0-Oh3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Qas-74-xib"/>
+                <constraint firstAttribute="bottom" secondItem="4Uv-Fh-m5v" secondAttribute="bottom" id="WYI-jU-2hv"/>
+                <constraint firstItem="4Uv-Fh-m5v" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bxc-uk-INE"/>
+                <constraint firstAttribute="bottom" secondItem="rgN-c0-Oh3" secondAttribute="bottom" id="fH8-Cs-tUN"/>
+                <constraint firstItem="r3R-sc-Tff" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="gJh-MP-DRO"/>
+                <constraint firstAttribute="trailing" secondItem="4Uv-Fh-m5v" secondAttribute="trailing" id="io0-Ci-xvc"/>
+                <constraint firstAttribute="trailing" secondItem="G86-GI-yv2" secondAttribute="trailing" id="qNE-Hx-y20"/>
+                <constraint firstItem="r3R-sc-Tff" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="tBN-wv-OnD"/>
+                <constraint firstItem="G86-GI-yv2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="v6J-YZ-HAL"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="228.2608695652174" y="193.86160714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="exclamationmark.triangle" catalog="system" width="64" height="56"/>
+    </resources>
+</document>

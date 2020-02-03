@@ -24,7 +24,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sqh-n3-mlQ">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sqh-n3-mlQ" customClass="RemoteImageView" customModule="RedditTopPosts" customModuleProvider="target">
                                         <rect key="frame" x="147" y="37" width="120" height="120"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -88,6 +88,7 @@
                         <outlet property="authorLabel" destination="G9h-w8-nWT" id="w58-i9-srE"/>
                         <outlet property="contentView" destination="Pf1-8J-H6b" id="MgP-aN-1ZA"/>
                         <outlet property="emptyView" destination="GDR-AK-UWT" id="WKh-9Y-ScR"/>
+                        <outlet property="thumbnailView" destination="Sqh-n3-mlQ" id="HmT-eZ-Lpk"/>
                         <outlet property="titleLabel" destination="jZ7-IO-ym1" id="65i-L2-Pwi"/>
                     </connections>
                 </viewController>
