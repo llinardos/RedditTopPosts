@@ -22,8 +22,9 @@ class App {
     splitVC.delegate = self
     splitVC.preferredDisplayMode = .allVisible
     
-    self.listVC.getPosts = asyncGetPostsReturning(.success(dummyPosts()))
-//    self.listVC.getPosts = asyncGetPostsReturning(.failure(NSError()))
+//    self.listVC.topPostsProvider = StubTopPostsProvider(returning: .success(dummyPosts()))
+//    self.listVC.topPostsProvider = StubTopPostsProvider(returning: .failure(NSError()))
+    self.listVC.topPostsProvider = RedditAPITopPostsProvider()
     self.listVC.onPostSelected = { [weak self] selectedPost in
       if self?.splitVC.viewControllers.count == 1 { // Only showing master
         guard let self = self else { return }
@@ -56,10 +57,3 @@ func dummyPosts() -> [RedditPost] {
   ]
 }
 
-func asyncGetPostsReturning(_ r: Result<[RedditPost], Error>) -> (@escaping (Result<[RedditPost], Error>) -> Void) -> Void {
-  return { callback in
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-      callback(r)
-    }
-  }
-}

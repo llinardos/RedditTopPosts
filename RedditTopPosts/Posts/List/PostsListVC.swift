@@ -10,7 +10,7 @@ class PostsListVC: UIViewController {
   
   var onPostSelected: (RedditPost) -> Void = { _ in }
   private var posts: [RedditPost] = []
-  var getPosts: (@escaping (Result<[RedditPost], Error>) -> Void) -> Void = { _ in }
+  var topPostsProvider: TopPostsProvider! // TODO: should be initialized with production ready implementation
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -57,7 +57,7 @@ class PostsListVC: UIViewController {
     if !refreshControl.isRefreshing {
       self.showLoading()
     }
-    self.getPosts() { [unowned self] result in
+    self.topPostsProvider.get() { [unowned self] result in
       self.refreshControl.endRefreshing()
       switch result {
       case .success(let posts): self.showPosts(posts)
