@@ -5,5 +5,5 @@ struct RedditPost {
   var authorName: String
   var commentsCount: Int
   var creationDate: Date
-  var thumbnailURL: URL
+  var thumbnailURL: URL?
 }

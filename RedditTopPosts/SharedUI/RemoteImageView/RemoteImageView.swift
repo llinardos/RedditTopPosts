@@ -6,6 +6,11 @@ class RemoteImageView: XibView {
   @IBOutlet private weak var errorView: UIView!
   @IBOutlet private weak var imageView: UIImageView!
   
+  private var defaultImageURL: URL = {
+    // Loads reddit noimage in case of NO url
+    return URL(string: "https://www.reddit.com/static/noimage.png")!
+  }()
+  
   private var dataTask: URLSessionDataTask?
   private var imageUrl: URL?
   
@@ -15,8 +20,8 @@ class RemoteImageView: XibView {
     errorView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fetchImage)))
   }
   
-  func loadImageFromURL(_ imageUrl: URL) {
-    self.imageUrl = imageUrl
+  func loadImageFromURL(_ imageUrl: URL?) {
+    self.imageUrl = imageUrl ?? defaultImageURL
     fetchImage()
   }
   

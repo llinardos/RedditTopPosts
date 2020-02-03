@@ -56,8 +56,19 @@ fileprivate func parseRedditEntriesFromJSONData(_ data: Data) -> Result<[RedditP
         authorName: $0.author,
         commentsCount: $0.num_comments,
         creationDate: Date(timeIntervalSince1970: $0.created_utc),
-        thumbnailURL: URL(string: $0.thumbnail)! // TODO: can be nil???
+        thumbnailURL: sanitizedThumbnailURLFrom($0.thumbnail)
       )
     }
   }
 }
+
+fileprivate func sanitizedThumbnailURLFrom(_ urlString: String) -> URL? {
+  // This handles the cases when thumbnail is a reddit "indirect" reference: instead
+  // of returning an url or none, it returs "default" or "self" (https://www.reddit.com/r/redditdev/comments/2wwuje/what_does_it_mean_when_the_thumbnail_field_has/)
+  // In these cases, I decide to set the thumnail as nil and let the client of this component
+  // decide how to handle the missing image.
+  guard let url = URL(string: urlString) else { return nil }
+  guard url.scheme == "http" || url.scheme == "https" else { return nil } //
+  return url
+}
+

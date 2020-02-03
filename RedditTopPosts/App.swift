@@ -69,14 +69,14 @@ func dummyPosts() -> [RedditPost] {
       authorName: "Author 3",
       commentsCount: 12124618987,
       creationDate: Date().advanced(by: -121),
-      thumbnailURL: URL(string: "alshjkf")!
+      thumbnailURL: nil
     ),
     RedditPost(
       title: "Title 4",
       authorName: "Author 4",
       commentsCount: 1251,
       creationDate: Date().advanced(by: -1241231),
-      thumbnailURL: URL(string: "ghalksjdg")!
+      thumbnailURL: nil
     ),
   ]
 }
