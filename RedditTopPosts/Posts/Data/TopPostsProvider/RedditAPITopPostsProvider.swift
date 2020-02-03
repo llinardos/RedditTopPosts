@@ -39,6 +39,7 @@ fileprivate struct ResponseFromRedditWebAPI: Decodable {
         var created_utc: Double
         var num_comments: Int
         var author: String
+        var thumbnail: String
       }
       let data: Data
     }
@@ -54,7 +55,8 @@ fileprivate func parseRedditEntriesFromJSONData(_ data: Data) -> Result<[RedditP
         title: $0.title,
         authorName: $0.author,
         commentsCount: $0.num_comments,
-        creationDate: Date(timeIntervalSince1970: $0.created_utc)
+        creationDate: Date(timeIntervalSince1970: $0.created_utc),
+        thumbnailURL: URL(string: $0.thumbnail)! // TODO: can be nil???
       )
     }
   }

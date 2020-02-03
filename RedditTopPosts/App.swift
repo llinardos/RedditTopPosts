@@ -22,9 +22,9 @@ class App {
     splitVC.delegate = self
     splitVC.preferredDisplayMode = .allVisible
     
-//    self.listVC.topPostsProvider = StubTopPostsProvider(returning: .success(dummyPosts()))
+    self.listVC.topPostsProvider = StubTopPostsProvider(returning: .success(dummyPosts()))
 //    self.listVC.topPostsProvider = StubTopPostsProvider(returning: .failure(NSError()))
-    self.listVC.topPostsProvider = RedditAPITopPostsProvider()
+//    self.listVC.topPostsProvider = RedditAPITopPostsProvider()
     self.listVC.onPostSelected = { [weak self] selectedPost in
       if self?.splitVC.viewControllers.count == 1 { // Only showing master
         guard let self = self else { return }
@@ -50,10 +50,34 @@ extension App: UISplitViewControllerDelegate {
 
 func dummyPosts() -> [RedditPost] {
   return [
-    RedditPost(title: "Title 1", authorName: "Author 1", commentsCount: 0, creationDate: Date()),
-    RedditPost(title: "Title 2", authorName: "Author 2", commentsCount: 1, creationDate: Date().advanced(by: -30)),
-    RedditPost(title: "Title 3", authorName: "Author 3", commentsCount: 12124618987, creationDate: Date().advanced(by: -121)),
-    RedditPost(title: "Title 4", authorName: "Author 4", commentsCount: 1251, creationDate: Date().advanced(by: -1241231)),
+    RedditPost(
+      title: "Title 1",
+      authorName: "Author 1",
+      commentsCount: 0, creationDate:
+      Date(),
+      thumbnailURL: URL(string: "https://b.thumbs.redditmedia.com/6P1_FO0JYWGsW9sZbaauLsVrl5406oWxvzYAY7jF0mI.jpg")!
+    ),
+    RedditPost(
+      title: "Title 2",
+      authorName: "Author 2",
+      commentsCount: 1,
+      creationDate: Date().advanced(by: -30),
+      thumbnailURL: URL(string: "https://b.thumbs.redditmedia.com/vjeshsBc_5iDZ1tLGeo_6rdZDU4_vP5RzEHOhO0tBxE.jpg")!
+    ),
+    RedditPost(
+      title: "Title 3",
+      authorName: "Author 3",
+      commentsCount: 12124618987,
+      creationDate: Date().advanced(by: -121),
+      thumbnailURL: URL(string: "alshjkf")!
+    ),
+    RedditPost(
+      title: "Title 4",
+      authorName: "Author 4",
+      commentsCount: 1251,
+      creationDate: Date().advanced(by: -1241231),
+      thumbnailURL: URL(string: "ghalksjdg")!
+    ),
   ]
 }
 
