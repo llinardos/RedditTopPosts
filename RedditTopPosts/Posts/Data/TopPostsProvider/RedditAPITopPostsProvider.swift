@@ -35,6 +35,7 @@ fileprivate struct ResponseFromRedditWebAPI: Decodable {
   struct Data: Decodable {
     struct Children: Decodable {
       struct Data: Decodable {
+        var id: String
         var title: String
         var created_utc: Double
         var num_comments: Int
@@ -53,6 +54,7 @@ fileprivate func parseRedditEntriesFromJSONData(_ data: Data) -> Result<[RedditP
   return Result {
     try JSONDecoder().decode(ResponseFromRedditWebAPI.self, from: data).data.children.map({ $0.data }).map {
       return RedditPost(
+        id: $0.id,
         title: $0.title,
         authorName: $0.author,
         commentsCount: $0.num_comments,
