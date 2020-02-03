@@ -42,6 +42,11 @@ class Posts {
     self.setAll(allPosts)
   }
   
+  func dismissAll() {
+    dismissedPostsStorage.appendIds(postsToShow.map { $0.id })
+    self.setAll(allPosts)
+  }
+  
   private func setAll(_ allPosts: [RedditPost]) {
     self.allPosts = allPosts
     self.postsToShow = self.allPosts.filter {

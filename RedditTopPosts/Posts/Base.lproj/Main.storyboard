@@ -210,9 +210,17 @@ You can tap to retry :)</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9yt-io-1Iv"/>
                     </view>
-                    <navigationItem key="navigationItem" id="MqC-PX-4GV"/>
+                    <navigationItem key="navigationItem" id="MqC-PX-4GV">
+                        <barButtonItem key="rightBarButtonItem" title="Dismiss All" id="SBe-sC-TnH">
+                            <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="onDismissAllTap:" destination="WUc-Un-pWm" id="2QI-cd-Thl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="wvz-7J-odd" id="TEL-bH-kVs"/>
+                        <outlet property="dismissAllButton" destination="SBe-sC-TnH" id="ehg-Jd-wZf"/>
                         <outlet property="errorView" destination="aTk-JZ-GJg" id="M9N-1I-FQ5"/>
                         <outlet property="loadingView" destination="wpn-3Y-O7c" id="f9J-qZ-MIm"/>
                         <outlet property="tableView" destination="prD-bV-6Lo" id="zJJ-7Q-aLC"/>

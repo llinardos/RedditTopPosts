@@ -7,6 +7,7 @@ class PostsListVC: UIViewController {
   
   @IBOutlet private var tableView: UITableView!
   private var refreshControl = UIRefreshControl()
+  @IBOutlet private var dismissAllButton: UIBarButtonItem!
   
   var onPostSelected: (RedditPost) -> Void = { _ in }
   var posts: Posts! // TODO: should be initialized with production ready implementation
@@ -85,6 +86,25 @@ class PostsListVC: UIViewController {
     self.contentView.isHidden = true
     self.errorView.isHidden = false
   }
+  
+  private func dismissPost(_ post: RedditPost) {
+    guard let indexPath = self.posts.toShow().firstIndex(of: post).map({ IndexPath(row: $0, section: 0) }) else {
+      return
+    }
+    self.posts.dismiss(post)
+    self.tableView.deleteRows(at: [indexPath], with: .left)
+  }
+  
+  
+  @IBAction private func onDismissAllTap(_ sender: UIBarButtonItem) {
+    self.posts.dismissAll()
+    
+    let allIndexPaths = (0..<self.tableView.numberOfRows(inSection: 0)).enumerated().map {
+      return IndexPath(row: $0.offset, section: 0)
+    }
+    self.posts.dismissAll()
+    self.tableView.deleteRows(at: allIndexPaths, with: .left)
+  }
 }
 
 extension PostsListVC: UITableViewDelegate, UITableViewDataSource {
@@ -98,8 +118,7 @@ extension PostsListVC: UITableViewDelegate, UITableViewDataSource {
     cell.showPost(post, asRead: posts.isPostRead(post))
     cell.onDismiss = { [weak self] in
       guard let self = self else { return }
-      self.posts.dismiss(post)
-      self.tableView.deleteRows(at: [indexPath], with: .left)
+      self.dismissPost(post)
     }
     return cell
   }

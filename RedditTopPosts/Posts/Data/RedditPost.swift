@@ -13,3 +13,9 @@ struct RedditPost {
   var creationDate: Date
   var image: Image?
 }
+
+extension RedditPost: Equatable {
+  static func == (lhs: Self, rhs: Self) -> Bool {
+    return lhs.id == rhs.id
+  }
+}
