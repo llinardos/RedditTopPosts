@@ -1,6 +1,10 @@
 import UIKit
 
 class PostsListVC: UIViewController {
+  @IBOutlet weak var contentView: UIView!
+  @IBOutlet weak var errorView: UIView!
+  @IBOutlet weak var loadingView: UIView!
+  
   @IBOutlet private var tableView: UITableView!
   
   var onPostSelected: (RedditPost) -> Void = { _ in }
@@ -37,9 +41,8 @@ class PostsListVC: UIViewController {
     }
     
     if posts.count == 0 {
-      self.showLoading(true)
+      self.showLoading()
       self.getPosts() { [unowned self] result in
-        self.showLoading(false)
         switch result {
         case .success(let posts): self.showPosts(posts)
         case .failure(let error): self.showError(error)
@@ -48,17 +51,25 @@ class PostsListVC: UIViewController {
     }
   }
   
-  private func showLoading(_ show: Bool) {
-    
+  private func showLoading() {
+    self.loadingView.isHidden = false
+    self.contentView.isHidden = true
+    self.errorView.isHidden = true
   }
   
   private func showPosts(_ posts: [RedditPost]) {
+    self.loadingView.isHidden = true
+    self.contentView.isHidden = false
+    self.errorView.isHidden = true
+
     self.posts = posts
     self.tableView.reloadData()
   }
   
   private func showError(_ error: Error) {
-    
+    self.loadingView.isHidden = true
+    self.contentView.isHidden = true
+    self.errorView.isHidden = false
   }
 }
 
