@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -32,18 +33,35 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtT-fQ-id9">
-                        <rect key="frame" x="144" y="44.5" width="263" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAQ-f8-jjO" customClass="RedditPostRemoteImageView" customModule="RedditTopPosts" customModuleProvider="target">
-                        <rect key="frame" x="16" y="44.5" width="120" height="120"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d7a-14-3qG">
+                        <rect key="frame" x="16" y="44.5" width="375" height="120"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAQ-f8-jjO" customClass="RedditPostRemoteImageView" customModule="RedditTopPosts" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="OYH-CG-hnl"/>
+                                    <constraint firstAttribute="width" secondItem="oAQ-f8-jjO" secondAttribute="height" id="zvH-gj-O6R"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtT-fQ-id9">
+                                <rect key="frame" x="128" y="50" width="247" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="120" id="OYH-CG-hnl"/>
-                            <constraint firstAttribute="width" secondItem="oAQ-f8-jjO" secondAttribute="height" id="zvH-gj-O6R"/>
+                            <constraint firstItem="oAQ-f8-jjO" firstAttribute="centerY" secondItem="d7a-14-3qG" secondAttribute="centerY" id="0Ye-rl-ntk"/>
+                            <constraint firstItem="gtT-fQ-id9" firstAttribute="centerY" secondItem="d7a-14-3qG" secondAttribute="centerY" id="12O-XU-wOt"/>
+                            <constraint firstItem="gtT-fQ-id9" firstAttribute="leading" secondItem="oAQ-f8-jjO" secondAttribute="trailing" constant="8" id="2iZ-mc-DWf"/>
+                            <constraint firstItem="gtT-fQ-id9" firstAttribute="top" secondItem="d7a-14-3qG" secondAttribute="top" priority="200" id="4OT-Ar-bBN"/>
+                            <constraint firstItem="oAQ-f8-jjO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="d7a-14-3qG" secondAttribute="top" id="9V7-Bv-Q40"/>
+                            <constraint firstAttribute="trailing" secondItem="gtT-fQ-id9" secondAttribute="trailing" id="bac-LT-mUf"/>
+                            <constraint firstItem="gtT-fQ-id9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="d7a-14-3qG" secondAttribute="top" id="cuU-Ym-bVi"/>
+                            <constraint firstItem="oAQ-f8-jjO" firstAttribute="leading" secondItem="d7a-14-3qG" secondAttribute="leading" id="jZd-7w-9O2"/>
+                            <constraint firstItem="oAQ-f8-jjO" firstAttribute="top" secondItem="d7a-14-3qG" secondAttribute="top" priority="500" id="xLb-gi-rrH"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6R-ok-Qem">
@@ -54,17 +72,15 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gtT-fQ-id9" firstAttribute="top" secondItem="JfA-FV-xaZ" secondAttribute="bottom" constant="8" id="0wS-V2-XT7"/>
                     <constraint firstItem="JfA-FV-xaZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="5oF-4U-wl8"/>
-                    <constraint firstItem="oAQ-f8-jjO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="BTn-dQ-4gk"/>
                     <constraint firstItem="JfA-FV-xaZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="FEx-Ch-gj8"/>
+                    <constraint firstItem="u6R-ok-Qem" firstAttribute="top" secondItem="d7a-14-3qG" secondAttribute="bottom" constant="8" id="Iio-f6-Rz2"/>
+                    <constraint firstAttribute="trailing" secondItem="d7a-14-3qG" secondAttribute="trailing" constant="16" id="Sgw-fh-MYY"/>
                     <constraint firstAttribute="trailing" secondItem="JfA-FV-xaZ" secondAttribute="trailing" constant="16" id="YSz-M5-j2T"/>
-                    <constraint firstItem="oAQ-f8-jjO" firstAttribute="top" secondItem="JfA-FV-xaZ" secondAttribute="bottom" constant="8" id="cmQ-9b-xZS"/>
-                    <constraint firstItem="u6R-ok-Qem" firstAttribute="top" secondItem="oAQ-f8-jjO" secondAttribute="bottom" constant="8" id="e7z-gP-fZK"/>
                     <constraint firstAttribute="trailing" secondItem="u6R-ok-Qem" secondAttribute="trailing" constant="16" id="e8k-Ky-7PD"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="u6R-ok-Qem" secondAttribute="bottom" constant="16" id="eyP-lN-LXo"/>
-                    <constraint firstAttribute="trailing" secondItem="gtT-fQ-id9" secondAttribute="trailing" id="o8f-CQ-lp7"/>
-                    <constraint firstItem="gtT-fQ-id9" firstAttribute="leading" secondItem="oAQ-f8-jjO" secondAttribute="trailing" constant="8" id="sHD-GK-G0W"/>
+                    <constraint firstItem="d7a-14-3qG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="oY0-aa-EBh"/>
+                    <constraint firstItem="d7a-14-3qG" firstAttribute="top" secondItem="JfA-FV-xaZ" secondAttribute="bottom" constant="8" id="sOD-Fp-ta6"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
