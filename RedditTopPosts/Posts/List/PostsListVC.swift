@@ -12,8 +12,9 @@ class PostsListVC: UIViewController {
   @IBOutlet weak var undismissAllButton: UIButton!
   @IBOutlet weak var refreshOnEmptyButton: UIButton!
   
-  var onPostSelected: (RedditPost) -> Void = { _ in }
+  var onPostSelected: (RedditPost?) -> Void = { _ in }
   var posts: Posts! // TODO: should be initialized with production ready implementation
+  var selectedPost: RedditPost?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,6 +36,9 @@ class PostsListVC: UIViewController {
     
     self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     self.tableView.separatorColor = .white
+    
+    self.tableView.allowsSelection = true
+    self.tableView.allowsMultipleSelection = false
     
     self.refreshControl.tintColor = UIColor.systemOrange
     self.refreshControl.addTarget(self, action: #selector(fetchPosts), for: .valueChanged)
@@ -113,6 +117,10 @@ class PostsListVC: UIViewController {
     self.posts.dismiss(post)
     self.tableView.deleteRows(at: [indexPath], with: .left)
     self.showEmptyViewAfterDismissAnimationIfNothingToShow()
+    
+    if post == selectedPost {
+      self.onPostSelected(nil)
+    }
   }
   
   private func dismissAllPosts() {
@@ -124,6 +132,8 @@ class PostsListVC: UIViewController {
     self.posts.dismissAll()
     self.tableView.deleteRows(at: allIndexPaths, with: .left)
     self.showEmptyViewAfterDismissAnimationIfNothingToShow()
+    
+    self.onPostSelected(nil)
   }
   
   func showEmptyViewAfterDismissAnimationIfNothingToShow() {
@@ -174,8 +184,10 @@ extension PostsListVC: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let selectedPost = posts.toShow()[indexPath.row]
+    self.selectedPost = selectedPost
     posts.markAsRead(selectedPost)
     tableView.reloadRows(at: [indexPath], with: .none)
+    tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
     onPostSelected(selectedPost)
   }
 }
