@@ -14,10 +14,47 @@
                     <view key="view" contentMode="scaleToFill" id="B13-fb-ge7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pf1-8J-H6b">
+                                <rect key="frame" x="0.0" y="44" width="414" height="730"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GDR-AK-UWT">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a post on the left to see it with detail here." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7w-TJ-j8n">
+                                        <rect key="frame" x="20.5" y="377" width="373" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="o7w-TJ-j8n" firstAttribute="centerY" secondItem="GDR-AK-UWT" secondAttribute="centerY" id="Qn5-wE-ABR"/>
+                                    <constraint firstItem="o7w-TJ-j8n" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GDR-AK-UWT" secondAttribute="leading" constant="16" id="U7G-br-iUU"/>
+                                    <constraint firstItem="o7w-TJ-j8n" firstAttribute="centerX" secondItem="GDR-AK-UWT" secondAttribute="centerX" id="f9N-Je-7X8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="2DG-s0-Nga" firstAttribute="bottom" secondItem="Pf1-8J-H6b" secondAttribute="bottom" id="AEG-o4-inR"/>
+                            <constraint firstItem="Pf1-8J-H6b" firstAttribute="leading" secondItem="2DG-s0-Nga" secondAttribute="leading" id="Psm-jc-B5f"/>
+                            <constraint firstItem="Pf1-8J-H6b" firstAttribute="top" secondItem="2DG-s0-Nga" secondAttribute="top" id="ZDr-bW-YQc"/>
+                            <constraint firstItem="2DG-s0-Nga" firstAttribute="bottom" secondItem="GDR-AK-UWT" secondAttribute="bottom" id="aLG-VM-0rs"/>
+                            <constraint firstItem="GDR-AK-UWT" firstAttribute="leading" secondItem="2DG-s0-Nga" secondAttribute="leading" id="at9-nl-xZ3"/>
+                            <constraint firstItem="2DG-s0-Nga" firstAttribute="trailing" secondItem="Pf1-8J-H6b" secondAttribute="trailing" id="cbS-U0-DMh"/>
+                            <constraint firstItem="GDR-AK-UWT" firstAttribute="trailing" secondItem="2DG-s0-Nga" secondAttribute="trailing" id="t8r-kK-7bA"/>
+                            <constraint firstItem="GDR-AK-UWT" firstAttribute="top" secondItem="B13-fb-ge7" secondAttribute="top" id="tQc-lw-DJI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2DG-s0-Nga"/>
                     </view>
                     <navigationItem key="navigationItem" id="GK0-BX-7Lr"/>
+                    <connections>
+                        <outlet property="contentView" destination="Pf1-8J-H6b" id="MgP-aN-1ZA"/>
+                        <outlet property="emptyView" destination="GDR-AK-UWT" id="WKh-9Y-ScR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9h7-fI-5Yi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
