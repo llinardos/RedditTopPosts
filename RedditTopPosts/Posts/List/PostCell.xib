@@ -87,22 +87,35 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6R-ok-Qem">
-                        <rect key="frame" x="349" y="280" width="42" height="20.5"/>
+                        <rect key="frame" x="160.5" y="281" width="230.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azb-7M-X2s">
+                        <rect key="frame" x="20" y="280" width="132.5" height="22"/>
+                        <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" title="  Dismiss Post" image="trash" catalog="system">
+                            <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="onDismissButtonTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZiI-ck-T4o"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="JfA-FV-xaZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="5oF-4U-wl8"/>
+                    <constraint firstItem="Azb-7M-X2s" firstAttribute="top" secondItem="oAQ-f8-jjO" secondAttribute="bottom" constant="8" id="7ZQ-so-s9o"/>
                     <constraint firstItem="JfA-FV-xaZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="FEx-Ch-gj8"/>
-                    <constraint firstItem="u6R-ok-Qem" firstAttribute="top" secondItem="d7a-14-3qG" secondAttribute="bottom" constant="8" id="Iio-f6-Rz2"/>
+                    <constraint firstItem="Azb-7M-X2s" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="FZN-8M-5wy"/>
                     <constraint firstAttribute="trailing" secondItem="d7a-14-3qG" secondAttribute="trailing" constant="16" id="Sgw-fh-MYY"/>
                     <constraint firstAttribute="trailing" secondItem="JfA-FV-xaZ" secondAttribute="trailing" constant="16" id="YSz-M5-j2T"/>
                     <constraint firstAttribute="trailing" secondItem="u6R-ok-Qem" secondAttribute="trailing" constant="16" id="e8k-Ky-7PD"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="u6R-ok-Qem" secondAttribute="bottom" constant="16" id="eyP-lN-LXo"/>
                     <constraint firstItem="d7a-14-3qG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="oY0-aa-EBh"/>
+                    <constraint firstItem="u6R-ok-Qem" firstAttribute="leading" secondItem="Azb-7M-X2s" secondAttribute="trailing" constant="8" id="rx0-Mk-U7b"/>
                     <constraint firstItem="d7a-14-3qG" firstAttribute="top" secondItem="JfA-FV-xaZ" secondAttribute="bottom" constant="8" id="sOD-Fp-ta6"/>
+                    <constraint firstItem="Azb-7M-X2s" firstAttribute="centerY" secondItem="u6R-ok-Qem" secondAttribute="centerY" id="zqg-Xc-u4i"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -110,6 +123,7 @@
                 <outlet property="authorLabel" destination="T4C-JO-R5S" id="XW1-ab-8aC"/>
                 <outlet property="commentsCountLabel" destination="u6R-ok-Qem" id="QJL-o7-BCM"/>
                 <outlet property="dateLabel" destination="L7L-Kq-0yM" id="d4x-0Y-zoN"/>
+                <outlet property="dismissPostButton" destination="Azb-7M-X2s" id="73t-jT-Lm4"/>
                 <outlet property="readUnreadBadge" destination="Leq-SG-5Ib" id="O9x-ga-8nK"/>
                 <outlet property="thumbnailView" destination="oAQ-f8-jjO" id="p6m-qi-Una"/>
                 <outlet property="titleLabel" destination="gtT-fQ-id9" id="odp-Xe-VG8"/>
@@ -117,4 +131,7 @@
             <point key="canvasLocation" x="23.913043478260871" y="100.78125"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="trash" catalog="system" width="60" height="64"/>
+    </resources>
 </document>

@@ -7,6 +7,9 @@ class PostCell: UITableViewCell {
   @IBOutlet private weak var dateLabel: UILabel!
   @IBOutlet private weak var thumbnailView: RedditPostRemoteImageView!
   @IBOutlet private weak var readUnreadBadge: UIView!
+  @IBOutlet private weak var dismissPostButton: UIButton!
+  
+  var onDismiss: () -> Void = {}
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -66,5 +69,9 @@ class PostCell: UITableViewCell {
       return "--"
     }
     return prettyTimeEllapsedString + " ago"
+  }
+  
+  @IBAction private func onDismissButtonTap(_ sender: Any) {
+    onDismiss()
   }
 }
