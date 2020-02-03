@@ -133,6 +133,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Vm-5W-qa6">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xC6-uE-bOH">
+                                        <rect key="frame" x="69" y="383" width="276" height="42.5"/>
+                                        <string key="text">There are no more posts to show...
+Maybe you've dismissed all of them.</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztt-dj-1XP">
+                                        <rect key="frame" x="69" y="433.5" width="276" height="30"/>
+                                        <state key="normal" title="&quot;Undismiss&quot; dismissed posts">
+                                            <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onUndismissAllTap:" destination="WUc-Un-pWm" eventType="touchUpInside" id="EJJ-St-jGk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAC-Fl-J6f">
+                                        <rect key="frame" x="69" y="471.5" width="276" height="30"/>
+                                        <state key="normal" title="Refresh">
+                                            <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onRefreshWhenEmptyTap:" destination="WUc-Un-pWm" eventType="touchUpInside" id="znY-Vh-LyM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ztt-dj-1XP" firstAttribute="top" secondItem="xC6-uE-bOH" secondAttribute="bottom" constant="8" id="1HE-je-ouU"/>
+                                    <constraint firstItem="xC6-uE-bOH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9Vm-5W-qa6" secondAttribute="leading" constant="16" id="BPV-1a-Kk5"/>
+                                    <constraint firstItem="xC6-uE-bOH" firstAttribute="centerX" secondItem="9Vm-5W-qa6" secondAttribute="centerX" id="EWT-1D-n82"/>
+                                    <constraint firstItem="KAC-Fl-J6f" firstAttribute="centerX" secondItem="9Vm-5W-qa6" secondAttribute="centerX" id="GuS-VP-3EY"/>
+                                    <constraint firstItem="xC6-uE-bOH" firstAttribute="centerY" secondItem="9Vm-5W-qa6" secondAttribute="centerY" id="M04-qy-MvS"/>
+                                    <constraint firstItem="KAC-Fl-J6f" firstAttribute="width" secondItem="ztt-dj-1XP" secondAttribute="width" id="V37-qK-ITX"/>
+                                    <constraint firstItem="KAC-Fl-J6f" firstAttribute="top" secondItem="ztt-dj-1XP" secondAttribute="bottom" constant="8" id="h5B-yC-PK3"/>
+                                    <constraint firstItem="ztt-dj-1XP" firstAttribute="centerX" secondItem="9Vm-5W-qa6" secondAttribute="centerX" id="jQy-JA-UE1"/>
+                                    <constraint firstItem="ztt-dj-1XP" firstAttribute="width" secondItem="xC6-uE-bOH" secondAttribute="width" id="yzQ-yt-f0b"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvz-7J-odd">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
@@ -198,14 +241,18 @@ You can tap to retry :)</string>
                             <constraint firstAttribute="bottom" secondItem="wvz-7J-odd" secondAttribute="bottom" id="5aL-iF-9E9"/>
                             <constraint firstItem="wpn-3Y-O7c" firstAttribute="leading" secondItem="9yt-io-1Iv" secondAttribute="leading" id="6k3-LL-13v"/>
                             <constraint firstItem="9yt-io-1Iv" firstAttribute="trailing" secondItem="aTk-JZ-GJg" secondAttribute="trailing" id="8PD-Nu-nR3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Vm-5W-qa6" secondAttribute="trailing" constant="-20" id="HEy-LK-iDP"/>
                             <constraint firstItem="wvz-7J-odd" firstAttribute="leading" secondItem="9yt-io-1Iv" secondAttribute="leading" id="MRF-PX-O7U"/>
                             <constraint firstItem="aTk-JZ-GJg" firstAttribute="top" secondItem="9yt-io-1Iv" secondAttribute="top" id="SmM-ig-EoD"/>
                             <constraint firstAttribute="bottom" secondItem="aTk-JZ-GJg" secondAttribute="bottom" id="X0k-5T-L81"/>
                             <constraint firstItem="wpn-3Y-O7c" firstAttribute="top" secondItem="9yt-io-1Iv" secondAttribute="top" id="XQY-r4-KmK"/>
+                            <constraint firstItem="9Vm-5W-qa6" firstAttribute="leading" secondItem="pjb-1X-ZwM" secondAttribute="leadingMargin" constant="-20" id="YdJ-bt-RHh"/>
                             <constraint firstItem="9yt-io-1Iv" firstAttribute="trailing" secondItem="wpn-3Y-O7c" secondAttribute="trailing" id="md4-yg-lih"/>
                             <constraint firstItem="9yt-io-1Iv" firstAttribute="trailing" secondItem="wvz-7J-odd" secondAttribute="trailing" id="opI-Fh-0DZ"/>
                             <constraint firstAttribute="bottom" secondItem="wpn-3Y-O7c" secondAttribute="bottom" id="rPK-q7-WPF"/>
                             <constraint firstItem="aTk-JZ-GJg" firstAttribute="leading" secondItem="9yt-io-1Iv" secondAttribute="leading" id="tTw-ae-msq"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="9Vm-5W-qa6" secondAttribute="bottom" constant="-34" id="uac-H1-XgA"/>
+                            <constraint firstAttribute="topMargin" secondItem="9Vm-5W-qa6" secondAttribute="top" id="wbw-oG-IlV"/>
                             <constraint firstItem="wvz-7J-odd" firstAttribute="top" secondItem="9yt-io-1Iv" secondAttribute="top" id="yt7-4s-JGE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9yt-io-1Iv"/>
@@ -221,9 +268,12 @@ You can tap to retry :)</string>
                     <connections>
                         <outlet property="contentView" destination="wvz-7J-odd" id="TEL-bH-kVs"/>
                         <outlet property="dismissAllButton" destination="SBe-sC-TnH" id="ehg-Jd-wZf"/>
+                        <outlet property="emptyView" destination="9Vm-5W-qa6" id="EJs-FX-xz7"/>
                         <outlet property="errorView" destination="aTk-JZ-GJg" id="M9N-1I-FQ5"/>
                         <outlet property="loadingView" destination="wpn-3Y-O7c" id="f9J-qZ-MIm"/>
+                        <outlet property="refreshOnEmptyButton" destination="KAC-Fl-J6f" id="XOF-Bx-e3A"/>
                         <outlet property="tableView" destination="prD-bV-6Lo" id="zJJ-7Q-aLC"/>
+                        <outlet property="undismissAllButton" destination="ztt-dj-1XP" id="wHd-Ya-xH4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imM-fx-WvL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

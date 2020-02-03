@@ -47,6 +47,11 @@ class Posts {
     self.setAll(allPosts)
   }
   
+  func undismissAll() {
+    dismissedPostsStorage.removeAll()
+    self.setAll(allPosts)
+  }
+  
   private func setAll(_ allPosts: [RedditPost]) {
     self.allPosts = allPosts
     self.postsToShow = self.allPosts.filter {

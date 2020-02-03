@@ -4,10 +4,13 @@ class PostsListVC: UIViewController {
   @IBOutlet weak var contentView: UIView!
   @IBOutlet weak var errorView: UIView!
   @IBOutlet weak var loadingView: UIView!
+  @IBOutlet weak var emptyView: UIView!
   
   @IBOutlet private var tableView: UITableView!
   private var refreshControl = UIRefreshControl()
   @IBOutlet private var dismissAllButton: UIBarButtonItem!
+  @IBOutlet weak var undismissAllButton: UIButton!
+  @IBOutlet weak var refreshOnEmptyButton: UIButton!
   
   var onPostSelected: (RedditPost) -> Void = { _ in }
   var posts: Posts! // TODO: should be initialized with production ready implementation
@@ -71,15 +74,24 @@ class PostsListVC: UIViewController {
     self.loadingView.isHidden = false
     self.contentView.isHidden = true
     self.errorView.isHidden = true
+    self.emptyView.isHidden = true
     
     self.dismissAllButton.isEnabled = false
   }
   
   private func showPosts() {
     self.loadingView.isHidden = true
-    self.contentView.isHidden = false
     self.errorView.isHidden = true
     
+    guard posts.toShow().count > 0 else  {
+      self.emptyView.isHidden = false
+      self.contentView.isHidden = true
+      self.dismissAllButton.isEnabled = false
+      return
+    }
+    
+    self.emptyView.isHidden = true
+    self.contentView.isHidden = false
     self.dismissAllButton.isEnabled = true
 
     self.tableView.reloadData()
@@ -89,6 +101,7 @@ class PostsListVC: UIViewController {
     self.loadingView.isHidden = true
     self.contentView.isHidden = true
     self.errorView.isHidden = false
+    self.emptyView.isHidden = true
     
     self.dismissAllButton.isEnabled = false
   }
@@ -99,6 +112,7 @@ class PostsListVC: UIViewController {
     }
     self.posts.dismiss(post)
     self.tableView.deleteRows(at: [indexPath], with: .left)
+    self.showEmptyViewAfterDismissAnimationIfNothingToShow()
   }
   
   private func dismissAllPosts() {
@@ -109,6 +123,16 @@ class PostsListVC: UIViewController {
     }
     self.posts.dismissAll()
     self.tableView.deleteRows(at: allIndexPaths, with: .left)
+    self.showEmptyViewAfterDismissAnimationIfNothingToShow()
+  }
+  
+  func showEmptyViewAfterDismissAnimationIfNothingToShow() {
+    if self.posts.toShow().count == 0 {
+      // Show empty view after animation if there are no more posts to show
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        self.showPosts()
+      }
+    }
   }
   
   @IBAction private func onDismissAllTap(_ sender: UIBarButtonItem) {
@@ -121,6 +145,15 @@ class PostsListVC: UIViewController {
     showAlertConfirmingAction(title: "Dismiss Post", message: "Are you sure you want to dismiss the post?", confirmActionText: "Dismiss Post", presentFrom: self) { [weak self] in
       self?.dismissPost(post)
     }
+  }
+  
+  @IBAction func onUndismissAllTap(_ sender: Any) {
+    self.posts.undismissAll()
+    self.showPosts()
+  }
+  
+  @IBAction func onRefreshWhenEmptyTap(_ sender: Any) {
+    self.fetchPosts()
   }
 }
 
