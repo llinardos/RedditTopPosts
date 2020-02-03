@@ -71,12 +71,16 @@ class PostsListVC: UIViewController {
     self.loadingView.isHidden = false
     self.contentView.isHidden = true
     self.errorView.isHidden = true
+    
+    self.dismissAllButton.isEnabled = false
   }
   
   private func showPosts() {
     self.loadingView.isHidden = true
     self.contentView.isHidden = false
     self.errorView.isHidden = true
+    
+    self.dismissAllButton.isEnabled = true
 
     self.tableView.reloadData()
   }
@@ -85,6 +89,8 @@ class PostsListVC: UIViewController {
     self.loadingView.isHidden = true
     self.contentView.isHidden = true
     self.errorView.isHidden = false
+    
+    self.dismissAllButton.isEnabled = false
   }
   
   private func dismissPost(_ post: RedditPost) {
