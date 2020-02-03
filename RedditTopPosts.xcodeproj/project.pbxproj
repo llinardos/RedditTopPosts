@@ -45,6 +45,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D42C85523E846D00019880B /* List */ = {
+			isa = PBXGroup;
+			children = (
+				0D4B12B923E8375D00512277 /* PostsListVC.swift */,
+				0D4B12BF23E83C2900512277 /* PostCell.swift */,
+				0D4B12C023E83C2900512277 /* PostCell.xib */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		0D42C85623E846EE0019880B /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				0D4B12BB23E8377600512277 /* PostDetailVC.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		0D42C85723E846FD0019880B /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				0D4B12BD23E83AF600512277 /* RedditPost.swift */,
+				0D4B12A923E8340500512277 /* Main.storyboard */,
+				0D42C85523E846D00019880B /* List */,
+				0D42C85623E846EE0019880B /* Detail */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
 		0D4B129723E8340500512277 = {
 			isa = PBXGroup;
 			children = (
@@ -66,12 +95,7 @@
 			children = (
 				0D4B12A323E8340500512277 /* AppDelegate.swift */,
 				0D4B12B723E8369A00512277 /* App.swift */,
-				0D4B12A923E8340500512277 /* Main.storyboard */,
-				0D4B12BF23E83C2900512277 /* PostCell.swift */,
-				0D4B12C023E83C2900512277 /* PostCell.xib */,
-				0D4B12B923E8375D00512277 /* PostsListVC.swift */,
-				0D4B12BB23E8377600512277 /* PostDetailVC.swift */,
-				0D4B12BD23E83AF600512277 /* RedditPost.swift */,
+				0D42C85723E846FD0019880B /* Posts */,
 				0D4B12AC23E8340500512277 /* Assets.xcassets */,
 				0D4B12AE23E8340500512277 /* LaunchScreen.storyboard */,
 				0D4B12B123E8340600512277 /* Info.plist */,
