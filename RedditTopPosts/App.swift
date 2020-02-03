@@ -29,8 +29,8 @@ class App {
     let topPostsProvider = RedditAPITopPostsProvider()
     let readPostsStorage = UserDefaultsPostsIdsStorage(key: "RedditTopPosts.ReadPotsIds")
 //    let readPostsStorage = InRamPostsIdsStorage(initialState: [])
-//    let dismissedPostsStorage = UserDefaultsPostsIdsStorage(key: "RedditTopPosts.DismissedPotsIds")
-    let dismissedPostsStorage = InRamPostsIdsStorage(initialState: [])
+    let dismissedPostsStorage = UserDefaultsPostsIdsStorage(key: "RedditTopPosts.DismissedPotsIds")
+//    let dismissedPostsStorage = InRamPostsIdsStorage(initialState: [])
 //    readPostsStorage.removeAll()
     let posts = Posts(topPostsProvider: topPostsProvider, readPostsStorage: readPostsStorage, dismissedPostsStorage: dismissedPostsStorage)
     
