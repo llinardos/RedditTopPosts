@@ -4,13 +4,7 @@ class PostsListVC: UIViewController {
   @IBOutlet private var tableView: UITableView!
   
   var onPostSelected: (RedditPost) -> Void = { _ in }
-  
-  var posts: [RedditPost] = [
-    RedditPost(title: "Title 1", authorName: "Author 1", commentsCount: 0, creationDate: Date()),
-    RedditPost(title: "Title 2", authorName: "Author 2", commentsCount: 1, creationDate: Date().advanced(by: -30)),
-    RedditPost(title: "Title 3", authorName: "Author 3", commentsCount: 12124618987, creationDate: Date().advanced(by: -121)),
-    RedditPost(title: "Title 4", authorName: "Author 4", commentsCount: 1251, creationDate: Date().advanced(by: -1241231)),
-  ]
+  var posts: [RedditPost] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()

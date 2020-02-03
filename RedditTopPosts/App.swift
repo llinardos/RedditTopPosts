@@ -22,6 +22,7 @@ class App {
     splitVC.delegate = self
     splitVC.preferredDisplayMode = .allVisible
     
+    self.listVC.posts = dummyPosts()
     self.listVC.onPostSelected = { [weak self] selectedPost in
       if self?.splitVC.viewControllers.count == 1 { // Only showing master
         guard let self = self else { return }
@@ -43,4 +44,13 @@ extension App: UISplitViewControllerDelegate {
     // Necesarry to show listVC as initial VC on iphone-ish layout (if not present, detail is presented as first VC and we need to pop to show the list).
       return true
   }
+}
+
+func dummyPosts() -> [RedditPost] {
+  return [
+    RedditPost(title: "Title 1", authorName: "Author 1", commentsCount: 0, creationDate: Date()),
+    RedditPost(title: "Title 2", authorName: "Author 2", commentsCount: 1, creationDate: Date().advanced(by: -30)),
+    RedditPost(title: "Title 3", authorName: "Author 3", commentsCount: 12124618987, creationDate: Date().advanced(by: -121)),
+    RedditPost(title: "Title 4", authorName: "Author 4", commentsCount: 1251, creationDate: Date().advanced(by: -1241231)),
+  ]
 }
