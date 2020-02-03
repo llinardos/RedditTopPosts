@@ -19,7 +19,7 @@ class PostsListVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = "Reddit Posts"
+    title = "Reddit Top 50 Posts"
     
     self.view.backgroundColor = .black
     
