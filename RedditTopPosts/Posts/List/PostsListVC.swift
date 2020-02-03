@@ -112,7 +112,15 @@ class PostsListVC: UIViewController {
   }
   
   @IBAction private func onDismissAllTap(_ sender: UIBarButtonItem) {
-    self.dismissAllPosts()
+    showAlertConfirmingAction(title: "Dismiss All Posts", message: "Are you sure you want to dismiss all posts?", confirmActionText: "Dismiss All Posts", presentFrom: self) { [weak self] in
+      self?.dismissAllPosts()
+    }
+  }
+  
+  private func onDismissPostTap(_ post: RedditPost) {
+    showAlertConfirmingAction(title: "Dismiss Post", message: "Are you sure you want to dismiss the post?", confirmActionText: "Dismiss Post", presentFrom: self) { [weak self] in
+      self?.dismissPost(post)
+    }
   }
 }
 
@@ -126,7 +134,7 @@ extension PostsListVC: UITableViewDelegate, UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
     cell.showPost(post, asRead: posts.isPostRead(post))
     cell.onDismiss = { [weak self] in
-      self?.dismissPost(post)
+      self?.onDismissPostTap(post)
     }
     return cell
   }
