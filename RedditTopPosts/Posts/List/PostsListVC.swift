@@ -186,8 +186,7 @@ extension PostsListVC: UITableViewDelegate, UITableViewDataSource {
     let selectedPost = posts.toShow()[indexPath.row]
     self.selectedPost = selectedPost
     posts.markAsRead(selectedPost)
-    tableView.reloadRows(at: [indexPath], with: .none)
-    tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+    (tableView.cellForRow(at: indexPath) as? PostCell)?.showAsRead()
     onPostSelected(selectedPost)
   }
 }

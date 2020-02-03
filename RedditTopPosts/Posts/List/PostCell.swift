@@ -46,6 +46,10 @@ class PostCell: UITableViewCell {
     readUnreadBadge.isHidden = isRead
   }
   
+  func showAsRead() {
+    readUnreadBadge.isHidden = true
+  }
+  
   private func text(for commentsCount: Int) -> String {
     // TODO: This can be handled better with localization + strings dict: https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/StringsdictFileFormat/StringsdictFileFormat.html
     switch commentsCount {
