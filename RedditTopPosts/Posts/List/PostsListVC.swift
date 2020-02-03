@@ -31,8 +31,10 @@ class PostsListVC: UIViewController {
     
     self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     self.tableView.separatorColor = .white
+    
+    errorView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fetchPosts)))
   }
-  
+    
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -41,12 +43,17 @@ class PostsListVC: UIViewController {
     }
     
     if posts.count == 0 {
-      self.showLoading()
-      self.getPosts() { [unowned self] result in
-        switch result {
-        case .success(let posts): self.showPosts(posts)
-        case .failure(let error): self.showError(error)
-        }
+      self.fetchPosts()
+    }
+  }
+  
+  @objc
+  private func fetchPosts() {
+    self.showLoading()
+    self.getPosts() { [unowned self] result in
+      switch result {
+      case .success(let posts): self.showPosts(posts)
+      case .failure(let error): self.showError(error)
       }
     }
   }
