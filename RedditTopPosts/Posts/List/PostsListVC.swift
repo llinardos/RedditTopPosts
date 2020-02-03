@@ -4,7 +4,8 @@ class PostsListVC: UIViewController {
   @IBOutlet private var tableView: UITableView!
   
   var onPostSelected: (RedditPost) -> Void = { _ in }
-  var posts: [RedditPost] = []
+  private var posts: [RedditPost] = []
+  var getPosts: (@escaping (Result<[RedditPost], Error>) -> Void) -> Void = { _ in }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,9 +31,34 @@ class PostsListVC: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    
     self.tableView.indexPathForSelectedRow.map {
       self.tableView.deselectRow(at: $0, animated: true)
     }
+    
+    if posts.count == 0 {
+      self.showLoading(true)
+      self.getPosts() { [unowned self] result in
+        self.showLoading(false)
+        switch result {
+        case .success(let posts): self.showPosts(posts)
+        case .failure(let error): self.showError(error)
+        }
+      }
+    }
+  }
+  
+  private func showLoading(_ show: Bool) {
+    
+  }
+  
+  private func showPosts(_ posts: [RedditPost]) {
+    self.posts = posts
+    self.tableView.reloadData()
+  }
+  
+  private func showError(_ error: Error) {
+    
   }
 }
 
