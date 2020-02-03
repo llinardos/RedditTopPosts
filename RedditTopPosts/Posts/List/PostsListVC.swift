@@ -95,8 +95,7 @@ class PostsListVC: UIViewController {
     self.tableView.deleteRows(at: [indexPath], with: .left)
   }
   
-  
-  @IBAction private func onDismissAllTap(_ sender: UIBarButtonItem) {
+  private func dismissAllPosts() {
     self.posts.dismissAll()
     
     let allIndexPaths = (0..<self.tableView.numberOfRows(inSection: 0)).enumerated().map {
@@ -104,6 +103,10 @@ class PostsListVC: UIViewController {
     }
     self.posts.dismissAll()
     self.tableView.deleteRows(at: allIndexPaths, with: .left)
+  }
+  
+  @IBAction private func onDismissAllTap(_ sender: UIBarButtonItem) {
+    self.dismissAllPosts()
   }
 }
 
@@ -117,8 +120,7 @@ extension PostsListVC: UITableViewDelegate, UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
     cell.showPost(post, asRead: posts.isPostRead(post))
     cell.onDismiss = { [weak self] in
-      guard let self = self else { return }
-      self.dismissPost(post)
+      self?.dismissPost(post)
     }
     return cell
   }
