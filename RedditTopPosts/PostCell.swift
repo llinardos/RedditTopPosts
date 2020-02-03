@@ -25,6 +25,9 @@ class PostCell: UITableViewCell {
     
     selectedBackgroundView = UIView()
     selectedBackgroundView?.backgroundColor = UIColor.darkGray
+    
+    accessoryView = UIImageView(image: UIImage(systemName: "chevron.right"))
+    accessoryView?.tintColor = .white
   }
   
   func setPost(_ post: RedditPost) {
