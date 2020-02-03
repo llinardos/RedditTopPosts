@@ -59,10 +59,37 @@
                     <view key="view" contentMode="scaleToFill" id="pjb-1X-ZwM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvz-7J-odd">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="prD-bV-6Lo">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="prD-bV-6Lo" firstAttribute="leading" secondItem="wvz-7J-odd" secondAttribute="leading" id="4vE-nn-IGa"/>
+                                    <constraint firstItem="prD-bV-6Lo" firstAttribute="top" secondItem="wvz-7J-odd" secondAttribute="top" id="f48-Sw-yYC"/>
+                                    <constraint firstAttribute="trailing" secondItem="prD-bV-6Lo" secondAttribute="trailing" id="rhI-bm-U6w"/>
+                                    <constraint firstAttribute="bottom" secondItem="prD-bV-6Lo" secondAttribute="bottom" id="rpK-QV-ej1"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9yt-io-1Iv" firstAttribute="bottom" secondItem="wvz-7J-odd" secondAttribute="bottom" id="5aL-iF-9E9"/>
+                            <constraint firstItem="wvz-7J-odd" firstAttribute="leading" secondItem="9yt-io-1Iv" secondAttribute="leading" id="MRF-PX-O7U"/>
+                            <constraint firstItem="9yt-io-1Iv" firstAttribute="trailing" secondItem="wvz-7J-odd" secondAttribute="trailing" id="opI-Fh-0DZ"/>
+                            <constraint firstItem="wvz-7J-odd" firstAttribute="top" secondItem="9yt-io-1Iv" secondAttribute="top" id="yt7-4s-JGE"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="9yt-io-1Iv"/>
                     </view>
                     <navigationItem key="navigationItem" id="MqC-PX-4GV"/>
+                    <connections>
+                        <outlet property="tableView" destination="prD-bV-6Lo" id="zJJ-7Q-aLC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imM-fx-WvL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
