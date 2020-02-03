@@ -22,8 +22,8 @@ class App {
     splitVC.delegate = self
     splitVC.preferredDisplayMode = .allVisible
     
-//    self.listVC.getPosts = asyncGetPostsReturning(.success(dummyPosts()))
-    self.listVC.getPosts = asyncGetPostsReturning(.failure(NSError()))
+    self.listVC.getPosts = asyncGetPostsReturning(.success(dummyPosts()))
+//    self.listVC.getPosts = asyncGetPostsReturning(.failure(NSError()))
     self.listVC.onPostSelected = { [weak self] selectedPost in
       if self?.splitVC.viewControllers.count == 1 { // Only showing master
         guard let self = self else { return }

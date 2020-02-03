@@ -6,6 +6,7 @@ class PostsListVC: UIViewController {
   @IBOutlet weak var loadingView: UIView!
   
   @IBOutlet private var tableView: UITableView!
+  private var refreshControl = UIRefreshControl()
   
   var onPostSelected: (RedditPost) -> Void = { _ in }
   private var posts: [RedditPost] = []
@@ -32,6 +33,10 @@ class PostsListVC: UIViewController {
     self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     self.tableView.separatorColor = .white
     
+    self.refreshControl.tintColor = UIColor.systemOrange
+    self.refreshControl.addTarget(self, action: #selector(fetchPosts), for: .valueChanged)
+    self.tableView.addSubview(refreshControl)
+    
     errorView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fetchPosts)))
   }
     
@@ -49,8 +54,11 @@ class PostsListVC: UIViewController {
   
   @objc
   private func fetchPosts() {
-    self.showLoading()
+    if !refreshControl.isRefreshing {
+      self.showLoading()
+    }
     self.getPosts() { [unowned self] result in
+      self.refreshControl.endRefreshing()
       switch result {
       case .success(let posts): self.showPosts(posts)
       case .failure(let error): self.showError(error)
