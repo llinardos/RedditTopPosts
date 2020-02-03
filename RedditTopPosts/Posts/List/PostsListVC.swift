@@ -96,6 +96,11 @@ extension PostsListVC: UITableViewDelegate, UITableViewDataSource {
     let post = posts.toShow()[indexPath.row]
     let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
     cell.showPost(post, asRead: posts.isPostRead(post))
+    cell.onDismiss = { [weak self] in
+      guard let self = self else { return }
+      self.posts.dismiss(post)
+      self.tableView.deleteRows(at: [indexPath], with: .left)
+    }
     return cell
   }
   
