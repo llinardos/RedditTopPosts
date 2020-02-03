@@ -105,7 +105,6 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="JfA-FV-xaZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="5oF-4U-wl8"/>
-                    <constraint firstItem="Azb-7M-X2s" firstAttribute="top" secondItem="oAQ-f8-jjO" secondAttribute="bottom" constant="8" id="7ZQ-so-s9o"/>
                     <constraint firstItem="JfA-FV-xaZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="FEx-Ch-gj8"/>
                     <constraint firstItem="Azb-7M-X2s" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="FZN-8M-5wy"/>
                     <constraint firstAttribute="trailing" secondItem="d7a-14-3qG" secondAttribute="trailing" constant="16" id="Sgw-fh-MYY"/>
@@ -115,6 +114,7 @@
                     <constraint firstItem="d7a-14-3qG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="oY0-aa-EBh"/>
                     <constraint firstItem="u6R-ok-Qem" firstAttribute="leading" secondItem="Azb-7M-X2s" secondAttribute="trailing" constant="8" id="rx0-Mk-U7b"/>
                     <constraint firstItem="d7a-14-3qG" firstAttribute="top" secondItem="JfA-FV-xaZ" secondAttribute="bottom" constant="8" id="sOD-Fp-ta6"/>
+                    <constraint firstItem="Azb-7M-X2s" firstAttribute="top" secondItem="d7a-14-3qG" secondAttribute="bottom" constant="8" id="y7h-up-5fb"/>
                     <constraint firstItem="Azb-7M-X2s" firstAttribute="centerY" secondItem="u6R-ok-Qem" secondAttribute="centerY" id="zqg-Xc-u4i"/>
                 </constraints>
             </tableViewCellContentView>
