@@ -33,7 +33,16 @@ class PostCell: UITableViewCell {
   func setPost(_ post: RedditPost) {
     authorLabel.text = post.authorName
     titleLabel.text = post.title
-    commentsCountLabel.text = "\(post.commentsCount)"
+    commentsCountLabel.text = text(for: post.commentsCount)
     dateLabel.text = "\(post.creationDate.timeIntervalSince1970)"
+  }
+  
+  private func text(for commentsCount: Int) -> String {
+    // TODO: LEAN - This can be handled better with localization + strings dict: https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/StringsdictFileFormat/StringsdictFileFormat.html
+    switch commentsCount {
+    case 0: return "No comments yet"
+    case 1: return "1 comment"
+    default: return "\(commentsCount) comments"
+    }
   }
 }

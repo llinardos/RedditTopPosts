@@ -5,10 +5,10 @@ class PostsListVC: UIViewController {
   
   var onGoToDetail: () -> Void = {} // TODO: replace with onPostSelected: (Post) -> Void
   var posts: [RedditPost] = [
-    RedditPost(title: "Title 1", authorName: "Author 1", commentsCount: 100, creationDate: Date()),
-    RedditPost(title: "Title 2", authorName: "Author 2", commentsCount: 100000, creationDate: Date().advanced(by: -30)),
-    RedditPost(title: "Title 3", authorName: "Author 3", commentsCount: 1241, creationDate: Date().advanced(by: -121)),
-    RedditPost(title: "Title 4", authorName: "Author 4", commentsCount: 125125412341, creationDate: Date().advanced(by: -1241231)),
+    RedditPost(title: "Title 1", authorName: "Author 1", commentsCount: 0, creationDate: Date()),
+    RedditPost(title: "Title 2", authorName: "Author 2", commentsCount: 1, creationDate: Date().advanced(by: -30)),
+    RedditPost(title: "Title 3", authorName: "Author 3", commentsCount: 12124618987, creationDate: Date().advanced(by: -121)),
+    RedditPost(title: "Title 4", authorName: "Author 4", commentsCount: 1251, creationDate: Date().advanced(by: -1241231)),
   ]
   
   override func viewDidLoad() {
