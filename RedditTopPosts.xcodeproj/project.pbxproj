@@ -8,22 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		0D4B12A423E8340500512277 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4B12A323E8340500512277 /* AppDelegate.swift */; };
-		0D4B12A623E8340500512277 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4B12A523E8340500512277 /* SceneDelegate.swift */; };
-		0D4B12A823E8340500512277 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4B12A723E8340500512277 /* ViewController.swift */; };
 		0D4B12AB23E8340500512277 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D4B12A923E8340500512277 /* Main.storyboard */; };
 		0D4B12AD23E8340500512277 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D4B12AC23E8340500512277 /* Assets.xcassets */; };
 		0D4B12B023E8340500512277 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D4B12AE23E8340500512277 /* LaunchScreen.storyboard */; };
+		0D4B12B823E8369A00512277 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4B12B723E8369A00512277 /* App.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0D4B12A023E8340500512277 /* RedditTopPosts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditTopPosts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D4B12A323E8340500512277 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0D4B12A523E8340500512277 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0D4B12A723E8340500512277 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0D4B12AA23E8340500512277 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0D4B12AC23E8340500512277 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D4B12AF23E8340500512277 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D4B12B123E8340600512277 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D4B12B723E8369A00512277 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				0D4B12A323E8340500512277 /* AppDelegate.swift */,
-				0D4B12A523E8340500512277 /* SceneDelegate.swift */,
-				0D4B12A723E8340500512277 /* ViewController.swift */,
+				0D4B12B723E8369A00512277 /* App.swift */,
 				0D4B12A923E8340500512277 /* Main.storyboard */,
 				0D4B12AC23E8340500512277 /* Assets.xcassets */,
 				0D4B12AE23E8340500512277 /* LaunchScreen.storyboard */,
@@ -138,9 +135,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D4B12A823E8340500512277 /* ViewController.swift in Sources */,
 				0D4B12A423E8340500512277 /* AppDelegate.swift in Sources */,
-				0D4B12A623E8340500512277 /* SceneDelegate.swift in Sources */,
+				0D4B12B823E8369A00512277 /* App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +287,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = llinardos.deviget.challenge.RedditTopPosts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -309,6 +306,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = llinardos.deviget.challenge.RedditTopPosts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
