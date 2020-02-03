@@ -7,6 +7,9 @@ class PostCell: UITableViewCell {
   @IBOutlet private weak var dateLabel: UILabel!
   @IBOutlet private weak var thumbnailView: RedditPostRemoteImageView!
   @IBOutlet private weak var readUnreadBadge: UIView!
+  @IBOutlet private weak var dismissPostButton: UIButton!
+  
+  var onDismiss: () -> Void = {}
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -43,6 +46,10 @@ class PostCell: UITableViewCell {
     readUnreadBadge.isHidden = isRead
   }
   
+  func showAsRead() {
+    readUnreadBadge.isHidden = true
+  }
+  
   private func text(for commentsCount: Int) -> String {
     // TODO: This can be handled better with localization + strings dict: https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/StringsdictFileFormat/StringsdictFileFormat.html
     switch commentsCount {
@@ -66,5 +73,9 @@ class PostCell: UITableViewCell {
       return "--"
     }
     return prettyTimeEllapsedString + " ago"
+  }
+  
+  @IBAction private func onDismissButtonTap(_ sender: Any) {
+    onDismiss()
   }
 }

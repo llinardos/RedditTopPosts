@@ -28,8 +28,11 @@ class App {
 //    let topPostsProvider = StubTopPostsProvider(returning: .failure(NSError()))
     let topPostsProvider = RedditAPITopPostsProvider()
     let readPostsStorage = UserDefaultsPostsIdsStorage(key: "RedditTopPosts.ReadPotsIds")
+//    let readPostsStorage = InRamPostsIdsStorage(initialState: [])
+//    let dismissedPostsStorage = UserDefaultsPostsIdsStorage(key: "RedditTopPosts.DismissedPotsIds")
+    let dismissedPostsStorage = InRamPostsIdsStorage(initialState: [])
 //    readPostsStorage.removeAll()
-    let posts = Posts(topPostsProvider: topPostsProvider, readPostsStorage: readPostsStorage)
+    let posts = Posts(topPostsProvider: topPostsProvider, readPostsStorage: readPostsStorage, dismissedPostsStorage: dismissedPostsStorage)
     
     self.listVC.posts = posts
     

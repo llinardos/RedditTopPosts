@@ -4,12 +4,17 @@ class PostsListVC: UIViewController {
   @IBOutlet weak var contentView: UIView!
   @IBOutlet weak var errorView: UIView!
   @IBOutlet weak var loadingView: UIView!
+  @IBOutlet weak var emptyView: UIView!
   
   @IBOutlet private var tableView: UITableView!
   private var refreshControl = UIRefreshControl()
+  @IBOutlet private var dismissAllButton: UIBarButtonItem!
+  @IBOutlet weak var undismissAllButton: UIButton!
+  @IBOutlet weak var refreshOnEmptyButton: UIButton!
   
-  var onPostSelected: (RedditPost) -> Void = { _ in }
+  var onPostSelected: (RedditPost?) -> Void = { _ in }
   var posts: Posts! // TODO: should be initialized with production ready implementation
+  var selectedPost: RedditPost?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -31,6 +36,9 @@ class PostsListVC: UIViewController {
     
     self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     self.tableView.separatorColor = .white
+    
+    self.tableView.allowsSelection = true
+    self.tableView.allowsMultipleSelection = false
     
     self.refreshControl.tintColor = UIColor.systemOrange
     self.refreshControl.addTarget(self, action: #selector(fetchPosts), for: .valueChanged)
@@ -70,12 +78,25 @@ class PostsListVC: UIViewController {
     self.loadingView.isHidden = false
     self.contentView.isHidden = true
     self.errorView.isHidden = true
+    self.emptyView.isHidden = true
+    
+    self.dismissAllButton.isEnabled = false
   }
   
   private func showPosts() {
     self.loadingView.isHidden = true
-    self.contentView.isHidden = false
     self.errorView.isHidden = true
+    
+    guard posts.toShow().count > 0 else  {
+      self.emptyView.isHidden = false
+      self.contentView.isHidden = true
+      self.dismissAllButton.isEnabled = false
+      return
+    }
+    
+    self.emptyView.isHidden = true
+    self.contentView.isHidden = false
+    self.dismissAllButton.isEnabled = true
 
     self.tableView.reloadData()
   }
@@ -84,6 +105,65 @@ class PostsListVC: UIViewController {
     self.loadingView.isHidden = true
     self.contentView.isHidden = true
     self.errorView.isHidden = false
+    self.emptyView.isHidden = true
+    
+    self.dismissAllButton.isEnabled = false
+  }
+  
+  private func dismissPost(_ post: RedditPost) {
+    guard let indexPath = self.posts.toShow().firstIndex(of: post).map({ IndexPath(row: $0, section: 0) }) else {
+      return
+    }
+    self.posts.dismiss(post)
+    self.tableView.deleteRows(at: [indexPath], with: .left)
+    self.showEmptyViewAfterDismissAnimationIfNothingToShow()
+    
+    if post == selectedPost {
+      self.onPostSelected(nil)
+    }
+  }
+  
+  private func dismissAllPosts() {
+    self.posts.dismissAll()
+    
+    let allIndexPaths = (0..<self.tableView.numberOfRows(inSection: 0)).enumerated().map {
+      return IndexPath(row: $0.offset, section: 0)
+    }
+    self.posts.dismissAll()
+    self.tableView.deleteRows(at: allIndexPaths, with: .left)
+    self.showEmptyViewAfterDismissAnimationIfNothingToShow()
+    
+    self.onPostSelected(nil)
+  }
+  
+  func showEmptyViewAfterDismissAnimationIfNothingToShow() {
+    if self.posts.toShow().count == 0 {
+      // Show empty view after animation if there are no more posts to show
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        self.showPosts()
+      }
+    }
+  }
+  
+  @IBAction private func onDismissAllTap(_ sender: UIBarButtonItem) {
+    showAlertConfirmingAction(title: "Dismiss All Posts", message: "Are you sure you want to dismiss all posts?", confirmActionText: "Dismiss All Posts", presentFrom: self) { [weak self] in
+      self?.dismissAllPosts()
+    }
+  }
+  
+  private func onDismissPostTap(_ post: RedditPost) {
+    showAlertConfirmingAction(title: "Dismiss Post", message: "Are you sure you want to dismiss the post?", confirmActionText: "Dismiss Post", presentFrom: self) { [weak self] in
+      self?.dismissPost(post)
+    }
+  }
+  
+  @IBAction func onUndismissAllTap(_ sender: Any) {
+    self.posts.undismissAll()
+    self.showPosts()
+  }
+  
+  @IBAction func onRefreshWhenEmptyTap(_ sender: Any) {
+    self.fetchPosts()
   }
 }
 
@@ -96,13 +176,17 @@ extension PostsListVC: UITableViewDelegate, UITableViewDataSource {
     let post = posts.toShow()[indexPath.row]
     let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
     cell.showPost(post, asRead: posts.isPostRead(post))
+    cell.onDismiss = { [weak self] in
+      self?.onDismissPostTap(post)
+    }
     return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let selectedPost = posts.toShow()[indexPath.row]
+    self.selectedPost = selectedPost
     posts.markAsRead(selectedPost)
-    tableView.reloadRows(at: [indexPath], with: .none)
+    (tableView.cellForRow(at: indexPath) as? PostCell)?.showAsRead()
     onPostSelected(selectedPost)
   }
 }

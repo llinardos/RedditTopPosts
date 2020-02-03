@@ -3,18 +3,21 @@ import Foundation
 class Posts {
   private let topPostsProvider: TopPostsProvider
   private let readPostsStorage: PostsIdsStorage
+  private let dismissedPostsStorage: PostsIdsStorage
   private var allPosts: [RedditPost] = []
+  private var postsToShow: [RedditPost] = []
   
-  init(topPostsProvider: TopPostsProvider, readPostsStorage: PostsIdsStorage) {
+  init(topPostsProvider: TopPostsProvider, readPostsStorage: PostsIdsStorage, dismissedPostsStorage: PostsIdsStorage) {
     self.topPostsProvider = topPostsProvider
     self.readPostsStorage = readPostsStorage
+    self.dismissedPostsStorage = dismissedPostsStorage
   }
   
   func fetch(_ callback: @escaping (Result<Posts, Error>) -> Void) {
     self.topPostsProvider.get() { [unowned self] result in
       switch result {
       case .success(let posts):
-        self.allPosts = posts
+        self.setAll(posts)
         callback(.success(self))
       case .failure(let error):
         callback(.failure(error))
@@ -23,7 +26,7 @@ class Posts {
   }
   
   func toShow() -> [RedditPost] {
-    return self.allPosts
+    return self.postsToShow
   }
   
   func markAsRead(_ post: RedditPost) {
@@ -32,5 +35,27 @@ class Posts {
   
   func isPostRead(_ post: RedditPost) -> Bool {
     return readPostsStorage.ids().contains(post.id)
+  }
+  
+  func dismiss(_ post: RedditPost) {
+    dismissedPostsStorage.appendIds([post.id])
+    self.setAll(allPosts)
+  }
+  
+  func dismissAll() {
+    dismissedPostsStorage.appendIds(postsToShow.map { $0.id })
+    self.setAll(allPosts)
+  }
+  
+  func undismissAll() {
+    dismissedPostsStorage.removeAll()
+    self.setAll(allPosts)
+  }
+  
+  private func setAll(_ allPosts: [RedditPost]) {
+    self.allPosts = allPosts
+    self.postsToShow = self.allPosts.filter {
+      !self.dismissedPostsStorage.ids().contains($0.id)
+    }
   }
 }
