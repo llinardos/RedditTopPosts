@@ -23,8 +23,14 @@ class PostsListVC: UIViewController {
     
     self.tableView.register(UINib(nibName: "PostCell", bundle: nil), forCellReuseIdentifier: "PostCell")
     
+    self.tableView.tableFooterView = UIView()
+    self.tableView.backgroundColor = self.view.backgroundColor
+    
     self.tableView.rowHeight = UITableView.automaticDimension
     self.tableView.estimatedRowHeight = 44
+    
+    self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    self.tableView.separatorColor = .white
     
     view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fireGoToDetail)))
   }
