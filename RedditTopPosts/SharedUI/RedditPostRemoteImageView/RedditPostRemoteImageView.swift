@@ -15,10 +15,21 @@ class RedditPostRemoteImageView: XibView {
   private var dataTask: URLSessionDataTask?
   private var imageUrl: URL?
   
+  var isTapOnImageEnabled: Bool {
+    set { imageView.isUserInteractionEnabled = newValue }
+    get { return imageView.isUserInteractionEnabled }
+  }
+  var onImageTapped: (URL) -> Void = { _ in }
+  
   override func commonInit() {
     super.commonInit()
     
+    // retry fetch on error
     errorView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fetchImage)))
+    
+    // action on image loaded
+    imageView.isUserInteractionEnabled = true
+    imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(triggerOnImageTapped)))
   }
   
   func loadImageFromURL(_ imageUrl: URL?) {
@@ -53,5 +64,11 @@ class RedditPostRemoteImageView: XibView {
       }
     })
     dataTask?.resume()
+  }
+  
+  @objc
+  private func triggerOnImageTapped() {
+    guard let imageUrl = self.imageUrl else { return }
+    self.onImageTapped(imageUrl)
   }
 }

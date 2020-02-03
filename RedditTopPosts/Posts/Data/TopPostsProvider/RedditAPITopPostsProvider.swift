@@ -40,6 +40,7 @@ fileprivate struct ResponseFromRedditWebAPI: Decodable {
         var num_comments: Int
         var author: String
         var thumbnail: String
+        var url: String
       }
       let data: Data
     }
@@ -56,19 +57,28 @@ fileprivate func parseRedditEntriesFromJSONData(_ data: Data) -> Result<[RedditP
         authorName: $0.author,
         commentsCount: $0.num_comments,
         creationDate: Date(timeIntervalSince1970: $0.created_utc),
-        thumbnailURL: sanitizedThumbnailURLFrom($0.thumbnail)
+        image: sanitizedImageFrom($0.thumbnail, $0.url)
       )
     }
   }
 }
 
-fileprivate func sanitizedThumbnailURLFrom(_ urlString: String) -> URL? {
+fileprivate func sanitizedImageFrom(_ thumbUrlString: String, _ fullUrlString: String) -> RedditPost.Image? {
   // This handles the cases when thumbnail is a reddit "indirect" reference: instead
   // of returning an url or none, it returs "default" or "self" (https://www.reddit.com/r/redditdev/comments/2wwuje/what_does_it_mean_when_the_thumbnail_field_has/)
   // In these cases, I decide to set the thumnail as nil and let the client of this component
   // decide how to handle the missing image.
-  guard let url = URL(string: urlString) else { return nil }
-  guard url.scheme == "http" || url.scheme == "https" else { return nil } //
-  return url
+  func sanitizeUrlString(_ urlString: String) -> URL? {
+    guard let url = URL(string: urlString) else { return nil }
+    guard url.scheme == "http" || url.scheme == "https" else { return nil }
+    return url
+  }
+  
+  guard let thumbUrl = sanitizeUrlString(thumbUrlString) else { return nil}
+  guard let fullUrl = sanitizeUrlString(fullUrlString) else { return nil}
+  return RedditPost.Image(
+    thumbnailURL: thumbUrl,
+    fullURL: fullUrl
+  )
 }
 

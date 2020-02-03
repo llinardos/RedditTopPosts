@@ -24,6 +24,8 @@ class PostCell: UITableViewCell {
     self.commentsCountLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
     self.commentsCountLabel.textColor = UIColor.systemOrange
     
+    self.thumbnailView.isTapOnImageEnabled = false
+    
     selectedBackgroundView = UIView()
     selectedBackgroundView?.backgroundColor = UIColor.darkGray
     
@@ -36,7 +38,7 @@ class PostCell: UITableViewCell {
     titleLabel.text = post.title
     commentsCountLabel.text = text(for: post.commentsCount)
     dateLabel.text = text(for: post.creationDate)
-    thumbnailView.loadImageFromURL(post.thumbnailURL)
+    thumbnailView.loadImageFromURL(post.image?.thumbnailURL)
   }
   
   private func text(for commentsCount: Int) -> String {

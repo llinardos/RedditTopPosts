@@ -9,6 +9,7 @@ class PostDetailVC: UIViewController {
   @IBOutlet weak var thumbnailView: RedditPostRemoteImageView!
   
   private var post: RedditPost?
+  var onImageTapped: (RedditPost.Image) -> Void = { _ in }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -16,6 +17,12 @@ class PostDetailVC: UIViewController {
     title = "Selected Post"
     
     self.view.backgroundColor = .white
+    self.thumbnailView.isTapOnImageEnabled = true
+    self.thumbnailView.onImageTapped = { [weak self] _ in
+      guard let self = self else { return }
+      guard let image = self.post?.image else { return }
+      self.onImageTapped(image)
+    }
     
     setPost(post)
   }
@@ -45,6 +52,6 @@ class PostDetailVC: UIViewController {
     
     self.authorLabel.text = post.authorName
     self.titleLabel.text = post.title
-    self.thumbnailView.loadImageFromURL(post.thumbnailURL)
+    self.thumbnailView.loadImageFromURL(post.image?.thumbnailURL)
   }
 }
